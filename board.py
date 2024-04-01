@@ -9,7 +9,8 @@ class Scoreboard(Turtle):
         self.color('white')
         self.hideturtle()
         self.penup()
-        self.updatesb(0,0)
+        self.drawline()
+        self.updatesb(0, 0)
 
     def updatesb(self, pts1, pts2):
         self.clear()
@@ -17,12 +18,20 @@ class Scoreboard(Turtle):
         self.write(pts2, font=FONT, align=ALIGN)
         self.goto(50, 220)
         self.write(pts1, font=FONT, align=ALIGN)
-    def game_over(self):
-        self.goto(0, 0)
-        self.color('red')
-        self.write("Game Over", font=FONT, align='center')
 
-    def addpts(self):
-        self.point1 += 1
-        self.clear()
-        self.updatesb()
+    def game_over(self, joueur):
+        self.goto(0, -50)
+        self.color('red')
+        self.write("Game Over", font=FONT, align=ALIGN)
+        self.goto(0, 50)
+        self.write(f"Player {joueur} gagne", font=FONT, align=ALIGN)
+
+    def drawline(self):
+        self.goto(0, -280)
+        self.left(90)
+        self.pensize(10)
+        for i in range(10):
+            self.pendown()
+            self.forward(20)
+            self.penup()
+            self.forward(20)
